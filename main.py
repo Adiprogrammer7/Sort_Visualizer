@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-from sorting_algorithms import BubbleSort, MergeSort
+from sorting_algorithms import BubbleSort, MergeSort, InsertionSort
 import sys
 import random
 
@@ -20,12 +20,14 @@ if __name__ == '__main__':
 		else:
 			sys.exit("Invalid input!")
 
-		algo_dict = {1:'Bubble Sort', 2:'Merge Sort'}
-		algo = int(input('Sorting Algorithm{}: '.format(algo_dict)))
+		algo_dict = {1:'Bubble Sort', 2:'Merge Sort', 3:'Insertion Sort'}
+		algo = int(input('Choose Sorting Algorithm {}: '.format(algo_dict)))
 		if algo == 1:
 			generator_func = BubbleSort(li)
 		elif algo == 2:
 			generator_func = MergeSort(li, 0, N-1)
+		elif algo == 3:
+			generator_func = InsertionSort(li)
 		else:
 			sys.exit("Invalid input!")
 

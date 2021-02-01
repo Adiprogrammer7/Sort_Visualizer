@@ -45,3 +45,11 @@ def merge(li, low, mid, high):
 	for i, j in enumerate(merged_li):
 		li[low + i] = j
 		yield li
+
+def InsertionSort(li):
+	for i in range(1, len(li)):
+		j = i
+		while j > 0 and li[j] < li[j-1]:
+			swap(li, j, j-1)
+			j -= 1
+			yield li
