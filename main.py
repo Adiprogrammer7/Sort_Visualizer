@@ -1,11 +1,12 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-from sorting_algorithms import BubbleSort, MergeSort, InsertionSort
+from sorting_algorithms import BubbleSort, MergeSort, InsertionSort, QuickSort
 import sys
 import random
 
 # when this file is itself is ran, not by importing.
 if __name__ == '__main__':
+	ms_speed = 180  #interval in millisec by which animation will run.
 	li = []
 	step_cnt = 0 
 	try:
@@ -20,14 +21,16 @@ if __name__ == '__main__':
 		else:
 			sys.exit("Invalid input!")
 
-		algo_dict = {1:'Bubble Sort', 2:'Merge Sort', 3:'Insertion Sort'}
-		algo = int(input('Choose Sorting Algorithm {}: '.format(algo_dict)))
+		algo_dict = {1:'Bubble Sort', 2:'Merge Sort', 3:'Insertion Sort', 4:'Quick Sort'}
+		algo = int(input('Choose Sorting Algorithm:\n{}: '.format(algo_dict)))
 		if algo == 1:
 			generator_func = BubbleSort(li)
 		elif algo == 2:
 			generator_func = MergeSort(li, 0, N-1)
 		elif algo == 3:
 			generator_func = InsertionSort(li)
+		elif algo == 4:
+			generator_func = QuickSort(li, 0, N-1)
 		else:
 			sys.exit("Invalid input!")
 
@@ -53,14 +56,15 @@ if __name__ == '__main__':
 		step_text.set_text('No. of steps: {}'.format(step_cnt))
 
 	# at each 'frames' it calls 'func' function, which then modifies the plot based on 'li' at that time.
-	anim = animation.FuncAnimation(fig, func=update_fig, frames=generator_func, interval=200, repeat=False)
+	anim = animation.FuncAnimation(fig, func=update_fig, frames=generator_func, interval=ms_speed, repeat=False)
 	plt.show()
 
 	# In abstract, above animation stuff kinda working like this.
-	# for i in QuickSort(li):
+	# for i in BubbleSort(li):
 	# 	for rect, j in zip(bar_rec, li):
 	# 		rect.set_height(j)
 	# 		ax.set_xticklabels(li)
 	# 		fig.canvas.draw()
 	# 		plt.pause(0.0001)		
 	# plt.show()
+	
